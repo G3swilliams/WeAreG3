@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NC GIS Map</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #0078d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .map-container {
+            position: relative;
+            height: 500px;
+            background: #e6f3ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .map-placeholder {
+            text-align: center;
+            color: #666;
+        }
+        .service-links {
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .service-links h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .service-item {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #0078d4;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .service-item h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .service-item p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .service-item a {
+            color: #0078d4;
+            text-decoration: none;
+            word-break: break-all;
+            font-size: 12px;
+        }
+        .service-item a:hover {
+            text-decoration: underline;
+        }
+        .coordinates {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        .coordinates h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+        .coord-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .coord-item {
+            background: white;
+            padding: 10px;
+            border-radius: 3px;
+            text-align: center;
+        }
+        .status {
+            padding: 20px;
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            margin: 20px;
+            border-radius: 5px;
+        }
+        .iframe-code {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .iframe-code h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .iframe-code code {
+            background: white;
+            padding: 10px;
+            border-radius: 3px;
+            display: block;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ North Carolina GIS Services</h1>
+            <p>Proof of Concept for SharePoint Integration</p>
+        </div>
+
+        <div class="map-container">
+            <div class="map-placeholder">
+                <h2>📍 Interactive Map Area</h2>
+                <p>Map extent: Eastern North Carolina coastal region</p>
+                <p><em>Full interactive map available when embedded properly in SharePoint</em></p>
+            </div>
+        </div>
+
+        <div class="coordinates">
+            <h3>📐 Map Extent Coordinates</h3>
+            <div class="coord-grid">
+                <div class="coord-item">
+                    <strong>Southwest Corner</strong><br>
+                    Lat: 35.79448629882028<br>
+                    Lng: -76.81565776103949
+                </div>
+                <div class="coord-item">
+                    <strong>Northeast Corner</strong><br>
+                    Lat: 35.87728970219376<br>
+                    Lng: -76.68279185527796
+                </div>
+                <div class="coord-item">
+                    <strong>Center Point</strong><br>
+                    Lat: 35.83588800050702<br>
+                    Lng: -76.74922481315847
+                </div>
+                <div class="coord-item">
+                    <strong>Coverage Area</strong><br>
+                    ~5.5 miles × ~8.2 miles<br>
+                    Coastal NC region
+                </div>
+            </div>
+        </div>
+
+        <div class="service-links">
+            <h3>🔗 Available GIS Data Sources</h3>
+            <div class="service-list">
+                <div class="service-item">
+                    <h4>🗻 NC Elevation Data (DEM)</h4>
+                    <p>3-foot grid digital elevation model with color-coded terrain visualization</p>
+                    <a href="https://services.nconemap.gov/secure/rest/services/Elevation/DEM03/ImageServer" target="_blank">
+                        services.nconemap.gov/.../DEM03/ImageServer
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <h4>📐 Topographic Contours</h4>
+                    <p>1-foot interval contour lines for detailed elevation analysis</p>
+                    <a href="https://services.nconemap.gov/secure/rest/services/Elevation/DEM03_Contours1_raster/ImageServer" target="_blank">
+                        services.nconemap.gov/.../DEM03_Contours1_raster/ImageServer
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <h4>🌊 FEMA Flood Zones</h4>
+                    <p>National Flood Hazard Layer showing flood risk areas</p>
+                    <a href="https://hazards.fema.gov/arcgis/rest/services/FIRMette/NFHLREST_FIRMette/MapServer" target="_blank">
+                        hazards.fema.gov/.../NFHLREST_FIRMette/MapServer
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <h4>🛣️ Road Pavement Conditions</h4>
+                    <p>NCDOT asphalt pavement condition with rating scores</p>
+                    <a href="https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_Asphalt_PCS/MapServer/0" target="_blank">
+                        gis11.services.ncdot.gov/.../NCDOT_Asphalt_PCS/MapServer/0
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <h4>🚧 Active Construction</h4>
+                    <p>Current NCDOT construction projects with completion status</p>
+                    <a href="https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_RoadProjects/NCDOT_ActiveConstructionProjects/MapServer" target="_blank">
+                        gis11.services.ncdot.gov/.../NCDOT_ActiveConstructionProjects/MapServer
+                    </a>
+                </div>
+
+                <div class="service-item">
+                    <h4>🚲 Bike/Pedestrian Infrastructure</h4>
+                    <p>NCDOT pedestrian and bicycle infrastructure data</p>
+                    <a href="https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_PBIN/NCDOT_PBIN/MapServer" target="_blank">
+                        gis11.services.ncdot.gov/.../NCDOT_PBIN/NCDOT_PBIN/MapServer
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="status">
+            <h3>📊 Integration Status</h3>
+            <p><strong>✅ Data Sources Identified:</strong> 6 REST services configured</p>
+            <p><strong>✅ Coordinate System:</strong> WGS84 (EPSG:4326)</p>
+            <p><strong>✅ Map Extent:</strong> Eastern NC coastal region defined</p>
+            <p><strong>⏳ Next Steps:</strong> SharePoint hosting and authentication setup</p>
+        </div>
+
+        <div class="iframe-code">
+            <h3>📋 SharePoint Embedding Instructions</h3>
+            <p>To embed this in SharePoint:</p>
+            <ol>
+                <li>Save this HTML file to a web-accessible location</li>
+                <li>In SharePoint, add an <strong>Embed</strong> web part</li>
+                <li>Use this iframe code (replace YOUR_URL with actual file URL):</li>
+            </ol>
+            <code>&lt;iframe src="YOUR_URL" width="100%" height="600px" frameborder="0" style="border:1px solid #ccc;"&gt;&lt;/iframe&gt;</code>
+        </div>
+    </div>
+
+    <script>
+        // Simple JavaScript for interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers to service items
+            const serviceItems = document.querySelectorAll('.service-item');
+            serviceItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+
+            // Add current time to status
+            const now = new Date().toLocaleString();
+            const statusDiv = document.querySelector('.status');
+            statusDiv.innerHTML += `<p><strong>🕒 Last Updated:</strong> ${now}</p>`;
+        });
+    </script>
+</body>
+</html>
